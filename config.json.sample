@@ -1,0 +1,6 @@
+{
+	"BrokerHost":  "localhost",
+	"BrokerSubTopic": "topic/foo",
+	"BrokerPubTopic": "topic/bar",
+	"BrokerPort":  1883
+}
