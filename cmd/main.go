@@ -19,8 +19,8 @@ func loadConfig() {
 		println("Configuration Details are : ")
 		println("-------------------------------------")
 		println("BrokerHost is: ", config.Cfg.BrokerHost)
-		println("Topic is: ", config.Cfg.BrokerSubTopic)
-		println("Topic is: ", config.Cfg.BrokerPubTopic)
+		println("Listens to Topic: ", config.Cfg.BrokerSubTopic)
+		println("Publishes to Topic: ", config.Cfg.BrokerPubTopic)
 		println("Broker Port is: ", config.Cfg.BrokerPort)
 
 		println("-------------------------------------")
@@ -43,13 +43,8 @@ func main() {
 	//Sets up gorm
 	model.SetupModel()
 
-	// Launch goroutines and pass the WaitGroup to each function
-	//wg.Add(1)
-	go transport.Subscribe(transport.BrokerClient, config.Cfg.BrokerSubTopic, transport.MessageChan)
-	go transport.ProcessMessages(transport.BrokerClient, transport.MessageChan)
-
-	// Wait for all goroutines to finish
-	//wg.Wait()
+	transport.Subscribe(transport.BrokerClient, config.Cfg.BrokerSubTopic, transport.MessageChan)
+	//go transport.ProcessMessages(transport.BrokerClient, transport.MessageChan)
 
 	// Create a channel to receive signals (e.g., Ctrl+C)
 	sigChan := make(chan os.Signal, 1)

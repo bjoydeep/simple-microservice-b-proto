@@ -33,7 +33,8 @@ func SetupTransport() {
 	// opts.SetUsername("bar")
 	// opts.SetPassword("baz")
 	//opts.SetDefaultPublishHandler(messagePubHandler)
-	//options.OrderMatters = true
+	//opts.OrderMatters = true
+	opts.CleanSession = false
 	opts.OnConnect = connectHandler
 	opts.OnConnectionLost = connectLostHandler
 	client := mqtt.NewClient(opts)
